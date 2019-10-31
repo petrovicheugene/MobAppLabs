@@ -17,5 +17,6 @@ public class Lab5Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab5);
+        setTitle(R.string.lab5_app_name);
     }
 }
