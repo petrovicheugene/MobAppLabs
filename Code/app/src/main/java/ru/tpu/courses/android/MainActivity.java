@@ -32,3 +32,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+// Tasks: https://github.com/ekzee/tpu-android-courses/wiki
