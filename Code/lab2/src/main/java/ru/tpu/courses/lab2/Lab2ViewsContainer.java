@@ -1,8 +1,12 @@
 package ru.tpu.courses.lab2;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
@@ -22,7 +26,6 @@ public class Lab2ViewsContainer extends LinearLayout {
     TextView titleView;
     TextView subtitleView;
     CheckBox checkBox;
-    int currentImageId = 0;
 
     // Этот конструктор используется при создании View в коде.
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -40,7 +43,7 @@ public class Lab2ViewsContainer extends LinearLayout {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public Lab2ViewsContainer(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setOrientation(HORIZONTAL);
+
         // Свои атрибуты описываются в файле res/values/attrs.xml
         // Эта строчка объединяет возможные применённые к View стили
         // TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Lab2ViewsContainer, defStyleAttr, 0);
@@ -49,8 +52,6 @@ public class Lab2ViewsContainer extends LinearLayout {
         //a.recycle();
 
         //
-
-        // LayoutParams lpView = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
         imageView = new ImageView(getContext());
         addView(imageView);
@@ -71,18 +72,19 @@ public class Lab2ViewsContainer extends LinearLayout {
 
     //
     public void setInstanceState(@NonNull Bundle savedInstanceState) {
-        setImage(savedInstanceState.getInt("imageId"));
+        //setImage(savedInstanceState.getParcelable("image"));
         titleView.setText(savedInstanceState.getString("title"));
         subtitleView.setText(savedInstanceState.getString("subtitle"));
         checkBox.setChecked(savedInstanceState.getBoolean("checked"));
         adjustViews();
     }
 
-    public void saveInstanceState(@NonNull Bundle instanceState) {
-        instanceState.putInt("imageId", currentImageId);
-        instanceState.putCharSequence("title", titleView.getText());
-        instanceState.putCharSequence("subtitle", subtitleView.getText());
-        instanceState.putBoolean("checked", checkBox.isChecked());
+    public void saveInstanceState(@NonNull Bundle outState) {
+        //Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        //outState.putParcelable("image", bitmap);
+        outState.putCharSequence("title", titleView.getText());
+        outState.putCharSequence("subtitle", subtitleView.getText());
+        outState.putBoolean("checked", checkBox.isChecked());
     }
 
     public void adjustViews() {
@@ -92,10 +94,26 @@ public class Lab2ViewsContainer extends LinearLayout {
 //        set.applyTo(this);
     }
 
-    protected void setImage(int imageId) {
-
+    // установка картинки
+    public void setImage(Bitmap bitmap) {
+        imageView.setImageBitmap(bitmap);
+        titleView.setText("IMAGE");
+        //subtitleView.setText();
 
     }
+
+    // установка заголовка
+    public void setTitle() {
+        titleView.setText("TITLE");
+
+    }
+
+    // установка подзаголовка
+    public void setSubtitle() {
+        titleView.setText("SUBTITLE");
+
+    }
+
 
     // Метод трансформирует указанные dp в пиксели, используя density экрана.
 
