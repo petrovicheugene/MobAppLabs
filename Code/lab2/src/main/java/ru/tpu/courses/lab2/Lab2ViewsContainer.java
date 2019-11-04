@@ -2,13 +2,9 @@ package ru.tpu.courses.lab2;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,6 +49,7 @@ public class Lab2ViewsContainer extends LinearLayout {
 
         //
 
+
         imageView = new ImageView(getContext());
         addView(imageView);
 
@@ -72,12 +69,12 @@ public class Lab2ViewsContainer extends LinearLayout {
 
     //
     public void setInstanceState(@NonNull Bundle savedInstanceState) {
-        //setImage(savedInstanceState.getParcelable("image"));
         titleView.setText(savedInstanceState.getString("title"));
         subtitleView.setText(savedInstanceState.getString("subtitle"));
         checkBox.setChecked(savedInstanceState.getBoolean("checked"));
         adjustViews();
     }
+
 
     public void saveInstanceState(@NonNull Bundle outState) {
         //Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
@@ -113,7 +110,6 @@ public class Lab2ViewsContainer extends LinearLayout {
         titleView.setText("SUBTITLE");
 
     }
-
 
     // Метод трансформирует указанные dp в пиксели, используя density экрана.
 

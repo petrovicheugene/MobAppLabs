@@ -9,17 +9,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Lab2Activity extends AppCompatActivity implements OnClickListener {
 
-
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, Lab2Activity.class);
     }
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +87,5 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         Lab2ViewsContainer viewContainer = findViewById(R.id.container);
         return viewContainer;
     }
-
 
 }
