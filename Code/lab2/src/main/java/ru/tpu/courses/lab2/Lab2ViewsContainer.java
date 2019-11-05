@@ -94,21 +94,16 @@ public class Lab2ViewsContainer extends LinearLayout {
     // установка картинки
     public void setImage(Bitmap bitmap) {
         imageView.setImageBitmap(bitmap);
-        titleView.setText("IMAGE");
-        //subtitleView.setText();
-
     }
 
     // установка заголовка
-    public void setTitle() {
-        titleView.setText("TITLE");
-
+    public void setTitle(String title) {
+        titleView.setText(title);
     }
 
     // установка подзаголовка
-    public void setSubtitle() {
-        titleView.setText("SUBTITLE");
-
+    public void setSubtitle(String subtitle) {
+        subtitleView.setText(subtitle);
     }
 
     // Метод трансформирует указанные dp в пиксели, используя density экрана.
