@@ -19,13 +19,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
-
+//****************************************************
 public class Lab2Activity extends AppCompatActivity implements OnClickListener {
-
+    //****************************************************
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, Lab2Activity.class);
     }
-
+    //****************************************************
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +52,7 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
             lab2ViewsContainer.setInstanceState(savedInstanceState);
         }
     }
-
+    //****************************************************
     @Override
     protected void onSaveInstanceState(@NonNull Bundle instanceState) {
         super.onSaveInstanceState(instanceState);
@@ -62,7 +62,7 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         // и свое сотояние контейнер сохраняет сам
         lab2ViewsContainer.saveInstanceState(instanceState);
     }
-
+    //****************************************************
     @Override
     public void onClick(View v) {
         // обработка нажатий кнопок
@@ -78,12 +78,12 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
             getUserStringAndWriteToView(R.string.lab2_subtitle);
         }
     }
-
+    //****************************************************
     protected Lab2ViewsContainer getViewContainer() {
         Lab2ViewsContainer viewContainer = findViewById(R.id.container);
         return viewContainer;
     }
-
+    //****************************************************
     protected void getUserStringAndWriteToView(int strId) {
         // Создание и настройка диалога ввода текста
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -126,7 +126,7 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         // старт диалога
         builder.show();
     }
-
+    //****************************************************
     protected void getPictureAndSetToView()
     {
         // R.drawable.class.getField("name_of_the_resource").getInt(getResources())
@@ -177,5 +177,4 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         // старт диалога
         builder.show();
     }
-
 }
