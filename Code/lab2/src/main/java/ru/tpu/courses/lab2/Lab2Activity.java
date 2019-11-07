@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -18,13 +17,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
 //****************************************************
 public class Lab2Activity extends AppCompatActivity implements OnClickListener {
     //****************************************************
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, Lab2Activity.class);
     }
+
     //****************************************************
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +51,7 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
             lab2ViewsContainer.setInstanceState(savedInstanceState);
         }
     }
+
     //****************************************************
     @Override
     protected void onSaveInstanceState(@NonNull Bundle instanceState) {
@@ -62,6 +62,7 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         // и свое сотояние контейнер сохраняет сам
         lab2ViewsContainer.saveInstanceState(instanceState);
     }
+
     //****************************************************
     @Override
     public void onClick(View v) {
@@ -78,11 +79,13 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
             getUserStringAndWriteToView(R.string.lab2_subtitle);
         }
     }
+
     //****************************************************
     protected Lab2ViewsContainer getViewContainer() {
         Lab2ViewsContainer viewContainer = findViewById(R.id.container);
         return viewContainer;
     }
+
     //****************************************************
     protected void getUserStringAndWriteToView(int strId) {
         // Создание и настройка диалога ввода текста
@@ -105,12 +108,9 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
                 // Получаем введенную строку и записываем в контейнер
                 // strId - для определения куда записывать строку - в заголовок или подзаголовок
                 Lab2ViewsContainer lab2ViewsContainer = getViewContainer();
-                if(strId == R.string.lab2_title)
-                {
+                if (strId == R.string.lab2_title) {
                     lab2ViewsContainer.setTitle(input.getText().toString());
-                }
-                else if(strId == R.string.lab2_subtitle)
-                {
+                } else if (strId == R.string.lab2_subtitle) {
                     lab2ViewsContainer.setSubtitle(input.getText().toString());
                 }
             }
@@ -126,9 +126,9 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         // старт диалога
         builder.show();
     }
+
     //****************************************************
-    protected void getPictureAndSetToView()
-    {
+    protected void getPictureAndSetToView() {
         // R.drawable.class.getField("name_of_the_resource").getInt(getResources())
 
         // Создание и настройка диалога ввода текста
@@ -136,7 +136,7 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         builder.setTitle(getResources().getString(R.string.lab2_image));
 
         // Создание списка картинок
-        final String[] pictureName ={"None", "Andriod", "GPS", "Teacher"};
+        final String[] pictureName = {"None", "Andriod", "GPS", "Teacher"};
 
         // Установка списка картинок и обработчик нажатия
         builder.setItems(pictureName, new DialogInterface.OnClickListener() {
@@ -146,7 +146,7 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
                 // Получаем введенную строку и загружаем картинку в контейнер
                 Bitmap bitmap;
                 bitmap = null;
-                switch(item) {
+                switch (item) {
                     case 0:
                         // пустой битмап
                         break;

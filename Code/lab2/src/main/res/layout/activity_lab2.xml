@@ -3,12 +3,11 @@
     android:id="@+id/activity_lab2_mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:orientation="vertical"
-    >
+    android:padding="16dp">
 
 
-<!-- Lab2ViewsContainer - класс, содержащий все view-->
+    <!-- Lab2ViewsContainer - класс, содержащий все view-->
 
     <ru.tpu.courses.lab2.Lab2ViewsContainer
         android:id="@+id/container"
@@ -20,10 +19,9 @@
         android:id="@+id/activity_lab2_btnLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="horizontal"
         android:layout_gravity="bottom"
-        >
+        android:orientation="horizontal"
+        android:padding="16dp">
 
         <Button
             android:id="@+id/lab2_imageBtn"
