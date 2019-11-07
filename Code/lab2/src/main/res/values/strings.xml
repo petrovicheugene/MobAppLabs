@@ -1,3 +1,10 @@
 <resources>
     <string name="lab2_app_name">Lab 2</string>
+    <string name="lab2_titleTemplate">%s!</string>
+    <string name="lab2_subtitle">Subtitle</string>
+    <string name="lab2_title">Title</string>
+    <string name="lab2_image">Image</string>
+    <string name="lab2_checkbox">CheckBox</string>
+
+
 </resources>

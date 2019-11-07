@@ -18,6 +18,6 @@ public class Lab1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab1);
-        setTitle(R.string.lab1_app_name);
+        setTitle(getString(R.string.lab1_titleTemplate, getClass().getSimpleName()));
     }
 }
