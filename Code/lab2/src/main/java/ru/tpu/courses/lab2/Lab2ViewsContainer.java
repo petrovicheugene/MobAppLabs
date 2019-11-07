@@ -79,7 +79,7 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
         checkBox.setId(View.generateViewId());
         addView(checkBox);
 
-        // 
+        //
         imageView.setOnClickListener(this);
         titleView.setOnClickListener(this);
         subtitleView.setOnClickListener(this);
