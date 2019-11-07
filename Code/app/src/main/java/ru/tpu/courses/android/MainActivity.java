@@ -12,6 +12,20 @@ import ru.tpu.courses.lab5.Lab5Activity;
 import ru.tpu.courses.lab6.Lab6Activity;
 
 
+
+
+// * Темы лабораторных работ:
+//         * <ul>
+// * <li>Знакомство с Android Studio и Git</li>
+//        * <li>Вёрстка UI. Сохранение состояния</li>
+//        * <li>RecyclerView, взаимодействие между экранами. Memory Cache</li>
+//        * <li>Взаимодействие с файловой системой, SQLite</li>
+//        * <li>Запросы к сети, многопоточность</li>
+//        * <li>Render Loop, Canvas, анимации</li>
+//        * </ul>
+
+
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
