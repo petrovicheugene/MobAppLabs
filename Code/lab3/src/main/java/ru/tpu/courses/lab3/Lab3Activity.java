@@ -3,6 +3,7 @@ package ru.tpu.courses.lab3;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,21 +30,23 @@ import ru.tpu.courses.lab3.adapter.StudentsAdapter;
  * содержит много элементов, то для простоты лучше воспользоваться ScrollView
  * </p>
  */
-public class Lab3Activity extends AppCompatActivity {
+public class Lab3Activity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private static final int REQUEST_STUDENT_ADD = 1;
 
+    //*******************************************************
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, Lab3Activity.class);
     }
 
+    //*******************************************************
     private final StudentsCache studentsCache = StudentsCache.getInstance();
-
     private RecyclerView list;
     private FloatingActionButton fab;
-
     private StudentsAdapter studentsAdapter;
-
+    private SearchView filter;
+    private StudentFilter studentFilter;
+    //*******************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,7 @@ public class Lab3Activity extends AppCompatActivity {
         setContentView(R.layout.lab3_activity);
         list = findViewById(android.R.id.list);
         fab = findViewById(R.id.fab);
+        studentFilter = new StudentFilter();
 
         /*
         Здесь идёт инициализация RecyclerView. Первое, что необходимо для его работы, это установить
@@ -72,7 +76,7 @@ public class Lab3Activity extends AppCompatActivity {
         студентов, подробнее о работе адаптера в документации к классу StudentsAdapter.
          */
         list.setAdapter(studentsAdapter = new StudentsAdapter());
-        studentsAdapter.setStudents(studentsCache.getStudents());
+        studentsAdapter.setStudents(studentFilter.getStudents());
 
         /*
         При нажатии на кнопку мы переходим на Activity для добавления студента. Обратите внимание,
@@ -87,6 +91,11 @@ public class Lab3Activity extends AppCompatActivity {
                         REQUEST_STUDENT_ADD
                 )
         );
+
+        // Установка "слушателя" SearchView
+        filter = findViewById(R.id.filterView);
+        filter.setOnQueryTextListener(this);
+
     }
 
     /**
@@ -101,17 +110,40 @@ public class Lab3Activity extends AppCompatActivity {
      *                    {@link #RESULT_CANCELED}.
      * @param data        даные переданные нам от запущенной Activity.
      */
+    //*******************************************************
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_STUDENT_ADD && resultCode == RESULT_OK) {
             Student student = AddStudentActivity.getResultStudent(data);
-
             studentsCache.addStudent(student);
-
-            studentsAdapter.setStudents(studentsCache.getStudents());
-            studentsAdapter.notifyItemRangeInserted(studentsAdapter.getItemCount() - 2, 2);
-            list.scrollToPosition(studentsAdapter.getItemCount() - 1);
+            updateAdapterData();
+//            studentsAdapter.setStudents(studentsCache.getStudents());
+//            studentsAdapter.notifyItemRangeInserted(studentsAdapter.getItemCount() - 2, 2);
+//            list.scrollToPosition(studentsAdapter.getItemCount() - 1);
         }
     }
+
+    //*******************************************************
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    //*******************************************************
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        studentFilter.setFilter(newText);
+        studentsAdapter.setHighlight(newText);
+        updateAdapterData();
+        return false;
+    }
+    //*******************************************************
+    private void updateAdapterData() {
+        studentsAdapter.setStudents(studentFilter.getStudents());
+        studentsAdapter.notifyDataSetChanged();
+        // studentsAdapter.notifyItemRangeInserted(studentsAdapter.getItemCount() - 2, 2);
+        list.scrollToPosition(studentsAdapter.getItemCount() - 1);
+    }
+
 }
