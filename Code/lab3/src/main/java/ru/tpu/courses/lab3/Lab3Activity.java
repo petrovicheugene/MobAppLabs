@@ -40,12 +40,12 @@ public class Lab3Activity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     //*******************************************************
-    private final StudentsCache studentsCache = StudentsCache.getInstance();
     private RecyclerView list;
     private FloatingActionButton fab;
     private StudentsAdapter studentsAdapter;
     private SearchView filter;
-    private StudentFilter studentFilter;
+    private StudentManager studentManager;
+
     //*******************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class Lab3Activity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.lab3_activity);
         list = findViewById(android.R.id.list);
         fab = findViewById(R.id.fab);
-        studentFilter = new StudentFilter();
+        studentManager = new StudentManager();
 
         /*
         Здесь идёт инициализация RecyclerView. Первое, что необходимо для его работы, это установить
@@ -76,7 +76,7 @@ public class Lab3Activity extends AppCompatActivity implements SearchView.OnQuer
         студентов, подробнее о работе адаптера в документации к классу StudentsAdapter.
          */
         list.setAdapter(studentsAdapter = new StudentsAdapter());
-        studentsAdapter.setStudents(studentFilter.getStudents());
+        studentsAdapter.setStudents(studentManager.getStudents());
 
         /*
         При нажатии на кнопку мы переходим на Activity для добавления студента. Обратите внимание,
@@ -116,11 +116,8 @@ public class Lab3Activity extends AppCompatActivity implements SearchView.OnQuer
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_STUDENT_ADD && resultCode == RESULT_OK) {
             Student student = AddStudentActivity.getResultStudent(data);
-            studentsCache.addStudent(student);
+            studentManager.addStudent(student);
             updateAdapterData();
-//            studentsAdapter.setStudents(studentsCache.getStudents());
-//            studentsAdapter.notifyItemRangeInserted(studentsAdapter.getItemCount() - 2, 2);
-//            list.scrollToPosition(studentsAdapter.getItemCount() - 1);
         }
     }
 
@@ -133,16 +130,16 @@ public class Lab3Activity extends AppCompatActivity implements SearchView.OnQuer
     //*******************************************************
     @Override
     public boolean onQueryTextChange(String newText) {
-        studentFilter.setFilter(newText);
+        studentManager.setFilter(newText);
         studentsAdapter.setHighlight(newText);
         updateAdapterData();
         return false;
     }
+
     //*******************************************************
     private void updateAdapterData() {
-        studentsAdapter.setStudents(studentFilter.getStudents());
+        studentsAdapter.setStudents(studentManager.getStudents());
         studentsAdapter.notifyDataSetChanged();
-        // studentsAdapter.notifyItemRangeInserted(studentsAdapter.getItemCount() - 2, 2);
         list.scrollToPosition(studentsAdapter.getItemCount() - 1);
     }
 

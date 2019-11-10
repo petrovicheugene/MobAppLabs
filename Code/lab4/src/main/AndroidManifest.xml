@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".Lab4Activity"></activity>
+        <activity android:name=".add.AddStudentActivity" />
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 //*******************************************************
-class StudentFilter {
+class StudentManager {
 
     private final StudentsCache studentsCache = StudentsCache.getInstance();
     private String filter = new String();
@@ -14,6 +14,11 @@ class StudentFilter {
     public void setFilter(final String filter) {
         // установка фильтра
         this.filter = filter.toLowerCase();
+    }
+
+    //*******************************************************
+    public void addStudent(Student student) {
+        studentsCache.addStudent(student);
     }
 
     //*******************************************************
