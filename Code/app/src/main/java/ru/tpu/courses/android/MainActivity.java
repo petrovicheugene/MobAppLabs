@@ -14,7 +14,7 @@ import ru.tpu.courses.lab6.Lab6Activity;
 // * Задания на [Wiki](https://github.com/ekzee/tpu-android-courses/wiki)
 // * Темы лабораторных работ:
 //         * <ul>
-// * <li>Знакомство с Android Studio и Git</li>
+//        * <li>Знакомство с Android Studio и Git</li>
 //        * <li>Вёрстка UI. Сохранение состояния</li>
 //        * <li>RecyclerView, взаимодействие между экранами. Memory Cache</li>
 //        * <li>Взаимодействие с файловой системой, SQLite</li>
