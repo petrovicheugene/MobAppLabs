@@ -7,11 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity
-public class Student implements Parcelable {
 
+@Entity(indices = {@Index(value = {"first_name", "second_name", "last_name"})})
+public class Student implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     public int id;
     @NonNull
@@ -73,3 +74,4 @@ public class Student implements Parcelable {
         dest.writeString(photoPath);
     }
 }
+
