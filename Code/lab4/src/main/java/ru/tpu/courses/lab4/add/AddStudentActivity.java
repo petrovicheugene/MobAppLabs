@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -134,7 +135,7 @@ public class AddStudentActivity extends AppCompatActivity {
             return true;
         }
         if (item.getItemId() == R.id.action_add_photo) {
-            try {
+             try {
                 File tempFile = createTempFile();
                 photoPath = tempFile.getPath();
                 Uri photoUri = FileProvider.getUriForFile(
@@ -193,6 +194,7 @@ public class AddStudentActivity extends AppCompatActivity {
                 storageDir
         );
     }
+    ///storage/emulated/0/Android/data/ru.tpu.courses.android/files/Pictures
 
     private Bitmap getScaledBitmap(String filePath, int maxWidth, int maxHeight) {
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
