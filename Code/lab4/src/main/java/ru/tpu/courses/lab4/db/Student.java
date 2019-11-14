@@ -7,12 +7,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Fts4;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+@Fts4
 @Entity
 public class Student implements Parcelable {
-
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "rowid")
+    @Ignore
     public int id;
     @NonNull
     @ColumnInfo(name = "first_name")
@@ -73,3 +77,4 @@ public class Student implements Parcelable {
         dest.writeString(photoPath);
     }
 }
+

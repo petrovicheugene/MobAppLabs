@@ -12,6 +12,6 @@
         android:id="@+id/action_save"
         android:icon="@drawable/lab4_ic_done_white_24dp"
         android:title="@string/lab4_action_save"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>
 
