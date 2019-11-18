@@ -3,9 +3,7 @@ package ru.tpu.courses.lab2;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
-import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -15,7 +13,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -23,10 +20,10 @@ import androidx.constraintlayout.widget.ConstraintSet;
 //****************************************************
 public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListener {
 
-    ImageView imageView;
-    TextView titleView;
-    TextView subtitleView;
-    CheckBox checkBox;
+    private final ImageView imageView;
+    private final TextView titleView;
+    private final TextView subtitleView;
+    private final CheckBox checkBox;
 
     //****************************************************
     // Этот конструктор используется при создании View в коде.
@@ -60,8 +57,7 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
         // генерируем и присваиваем id
         imageView.setId(View.generateViewId());
         // установка пустого bitmap
-        Bitmap bitmap = null;
-        imageView.setImageBitmap(bitmap);
+        imageView.setImageBitmap(null);
         imageView.setVisibility(View.GONE);
         addView(imageView);
 
@@ -106,26 +102,25 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
     }
 
     //****************************************************
-    public void setInstanceState(@NonNull Bundle savedInstanceState) {
-        // восстановление состояний всех view
-        Bitmap bitmap = savedInstanceState.getParcelable(getResources().getString(R.string.lab2_image));
-        setImage(bitmap);
-        setTitle(savedInstanceState.getString(getResources().getString(R.string.lab2_title)));
-        setSubtitle(savedInstanceState.getString(getResources().getString(R.string.lab2_subtitle)));
-        checkBox.setChecked(savedInstanceState.getBoolean(getResources().getString(R.string.lab2_checkbox)));
-        adjustViews();
-    }
+//    public void setInstanceState(@NonNull Bundle savedInstanceState) {
+//        // восстановление состояний всех view
+//        Bitmap bitmap = savedInstanceState.getParcelable(getResources().getString(R.string.lab2_image));
+//        setImage(bitmap);
+//        setTitle(savedInstanceState.getString(getResources().getString(R.string.lab2_title)));
+//        setSubtitle(savedInstanceState.getString(getResources().getString(R.string.lab2_subtitle)));
+//        checkBox.setChecked(savedInstanceState.getBoolean(getResources().getString(R.string.lab2_checkbox)));
+//        adjustViews();
+//    }
 
     //****************************************************
-    public void saveInstanceState(@NonNull Bundle outState) {
-        // сохранение состояний всех view
-        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-        outState.putParcelable(getResources().getString(R.string.lab2_image), bitmap);
-        outState.putCharSequence(getResources().getString(R.string.lab2_title), titleView.getText());
-        outState.putCharSequence(getResources().getString(R.string.lab2_subtitle), subtitleView.getText());
-        outState.putBoolean(getResources().getString(R.string.lab2_checkbox), checkBox.isChecked());
-    }
-
+//    public void saveInstanceState(@NonNull Bundle outState) {
+//        // сохранение состояний всех view
+//        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+//        outState.putParcelable(getResources().getString(R.string.lab2_image), bitmap);
+//        outState.putCharSequence(getResources().getString(R.string.lab2_title), titleView.getText());
+//        outState.putCharSequence(getResources().getString(R.string.lab2_subtitle), subtitleView.getText());
+//        outState.putBoolean(getResources().getString(R.string.lab2_checkbox), checkBox.isChecked());
+//    }
     //****************************************************
     public void adjustViews() {
         // горизонтальное расстояние между view
@@ -180,7 +175,7 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
     }
 
     //****************************************************
-    protected void adjustSubtitleView() {
+    private void adjustSubtitleView() {
         // набор настроек для макета СonstraintLayout
         ConstraintSet set = new ConstraintSet();
         set.clone(this);
@@ -220,7 +215,7 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
     //****************************************************
     // установка заголовка
     public void setTitle(String title) {
-        if (titleView.getText().toString() != title) {
+        if (!titleView.getText().toString().equals(title)) {
             titleView.setText(title);
             if (title.isEmpty()) {
                 // при пустой строке titleView удаляется с макета и не занимает места
@@ -233,9 +228,14 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
     }
 
     //****************************************************
+    public final String getTitle() {
+        return titleView.getText().toString();
+    }
+
+    //****************************************************
     // установка подзаголовка
     public void setSubtitle(String subtitle) {
-        if (subtitleView.getText().toString() != subtitle) {
+        if (!subtitleView.getText().toString().equals(subtitle)) {
             subtitleView.setText(subtitle);
             if (subtitle.isEmpty()) {
                 // при пустой строке subtitleView удаляется с макета и не занимает места
@@ -245,6 +245,21 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
             }
             adjustSubtitleView();
         }
+    }
+    //****************************************************
+
+    public final String getSubtitle() {
+        return subtitleView.getText().toString();
+    }
+    //****************************************************
+
+    public final void setChecked(Boolean checked) {
+        checkBox.setChecked(checked);
+    }
+
+    //****************************************************
+    public final Boolean isChecked() {
+        return checkBox.isChecked();
     }
     //****************************************************
     // Метод трансформирует указанные dp в пиксели, используя density экрана.

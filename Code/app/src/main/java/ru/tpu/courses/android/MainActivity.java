@@ -11,6 +11,18 @@ import ru.tpu.courses.lab4.Lab4Activity;
 import ru.tpu.courses.lab5.Lab5Activity;
 import ru.tpu.courses.lab6.Lab6Activity;
 
+// * Задания на [Wiki](https://github.com/ekzee/tpu-android-courses/wiki)
+// * Темы лабораторных работ:
+//         * <ul>
+//        * <li>Знакомство с Android Studio и Git</li>
+//        * <li>Вёрстка UI. Сохранение состояния</li>
+//        * <li>RecyclerView, взаимодействие между экранами. Memory Cache</li>
+//        * <li>Взаимодействие с файловой системой, SQLite</li>
+//        * <li>Запросы к сети, многопоточность</li>
+//        * <li>Render Loop, Canvas, анимации</li>
+//        * </ul>
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,9 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.lab1).setOnClickListener((v) -> {
-            startActivity(Lab1Activity.newIntent(this));
-        });
+        findViewById(R.id.lab1).setOnClickListener((v) -> startActivity(Lab1Activity.newIntent(this)));
 
         findViewById(R.id.lab2).setOnClickListener((v) -> startActivity(Lab2Activity.newIntent(this)));
         findViewById(R.id.lab3).setOnClickListener((v) -> startActivity(Lab3Activity.newIntent(this)));

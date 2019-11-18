@@ -1,3 +1,10 @@
 <resources>
-    <string name="lab3_app_name">Lab 3</string>
+    <string name="lab3_title">I\'m %s!</string>
+
+    <string name="lab3_first_name">First name</string>
+    <string name="lab3_second_name">Second name</string>
+    <string name="lab3_last_name">Last name</string>
+
+    <string name="lab3_error_already_exists">The student already exists</string>
+    <string name="lab3_error_empty_fields">All fields must not be empty</string>
 </resources>
