@@ -16,8 +16,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 //****************************************************
 public class Lab2Activity extends AppCompatActivity implements OnClickListener {
+
+    private static int currentImageId = 0;
+
     //****************************************************
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, Lab2Activity.class);
@@ -45,9 +49,13 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         // восстанавление состояния экрана, если оно до этого было сохранено
         if (savedInstanceState != null) {
             Lab2ViewsContainer lab2ViewsContainer = getViewContainer();
-            // Передаем в контейнер Bundle c сохраненным состоянием
-            // и контейнер восстанавливает свое состояние сам
-            lab2ViewsContainer.setInstanceState(savedInstanceState);
+            // Восстановление состояния контейнера
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), currentImageId);
+            lab2ViewsContainer.setImage(bitmap);
+            lab2ViewsContainer.setTitle(savedInstanceState.getString(getResources().getString(R.string.lab2_title)));
+            lab2ViewsContainer.setSubtitle(savedInstanceState.getString(getResources().getString(R.string.lab2_subtitle)));
+            lab2ViewsContainer.setChecked(savedInstanceState.getBoolean(getResources().getString(R.string.lab2_checkbox)));
+            lab2ViewsContainer.adjustViews();
         }
     }
 
@@ -55,11 +63,11 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle instanceState) {
         super.onSaveInstanceState(instanceState);
-        // сохранение состояние экрана
+        // сохранение состояние экрана id картинки сохранено в currentImageId
         Lab2ViewsContainer lab2ViewsContainer = getViewContainer();
-        // Передаем в контейнер Lab2ViewsContainer Bundle instanceState
-        // и свое сотояние контейнер сохраняет сам
-        lab2ViewsContainer.saveInstanceState(instanceState);
+        instanceState.putCharSequence(getResources().getString(R.string.lab2_title), lab2ViewsContainer.getTitle());
+        instanceState.putCharSequence(getResources().getString(R.string.lab2_subtitle), lab2ViewsContainer.getSubtitle());
+        instanceState.putBoolean(getResources().getString(R.string.lab2_checkbox), lab2ViewsContainer.isChecked());
     }
 
     //****************************************************
@@ -130,20 +138,22 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         // Установка списка картинок и обработчик нажатия
         builder.setItems(pictureName, (dialog, item) -> {
             // Получаем введенную строку и загружаем картинку в контейнер
-            Bitmap bitmap;
-            bitmap = null;
+            Bitmap bitmap = null;
             switch (item) {
                 case 0:
                     // пустой битмап
                     break;
                 case 1: // Andriod
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.android_games);
+                    currentImageId = R.drawable.android_games;
                     break;
                 case 2: // GPS
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gps);
+                    currentImageId = R.drawable.gps;
                     break;
                 case 3: // Teacher
                     bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.teacher);
+                    currentImageId = R.drawable.teacher;
                     break;
 
             }
