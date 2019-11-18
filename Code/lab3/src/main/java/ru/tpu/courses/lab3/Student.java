@@ -6,14 +6,16 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.core.util.ObjectsCompat;
 
+import java.util.Objects;
+
 public class Student implements Parcelable {
 
 	@NonNull
-	public String firstName;
+	public final String firstName;
 	@NonNull
-	public String secondName;
+	public final String secondName;
 	@NonNull
-	public String lastName;
+	public final String lastName;
 
 	public Student(@NonNull String firstName, @NonNull String secondName, @NonNull String lastName) {
 		this.lastName = lastName;
@@ -21,10 +23,10 @@ public class Student implements Parcelable {
 		this.secondName = secondName;
 	}
 
-	protected Student(Parcel in) {
-		firstName = in.readString();
-		lastName = in.readString();
-		secondName = in.readString();
+	private Student(Parcel in) {
+		firstName = Objects.requireNonNull(in.readString());
+		lastName = Objects.requireNonNull(in.readString());
+		secondName = Objects.requireNonNull(in.readString());
 	}
 
 	public static final Creator<Student> CREATOR = new Creator<Student>() {

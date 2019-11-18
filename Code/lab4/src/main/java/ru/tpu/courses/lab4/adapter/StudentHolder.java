@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ru.tpu.courses.lab4.R;
 
-public class StudentHolder extends RecyclerView.ViewHolder {
+class StudentHolder extends RecyclerView.ViewHolder {
 
     public final TextView student;
     public final ImageView photo;

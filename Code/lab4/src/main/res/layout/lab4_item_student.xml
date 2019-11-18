@@ -12,7 +12,7 @@
 		android:layout_height="80dp"
 		android:scaleType="centerCrop"
 		android:layout_marginRight="16dp"
-		/>
+        android:contentDescription="TODO" />
 
 	<TextView
 		android:id="@+id/student"

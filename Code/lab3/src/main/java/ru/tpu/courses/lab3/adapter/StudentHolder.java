@@ -1,7 +1,5 @@
 package ru.tpu.courses.lab3.adapter;
 
-import android.content.Context;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -10,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ru.tpu.courses.lab3.R;
 
-public class StudentHolder extends RecyclerView.ViewHolder {
+class StudentHolder extends RecyclerView.ViewHolder {
 
     public final TextView student;
 

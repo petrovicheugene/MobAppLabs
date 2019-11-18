@@ -14,9 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import ru.tpu.courses.lab4.adapter.StudentsAdapter;
 import ru.tpu.courses.lab4.add.AddStudentActivity;
-import ru.tpu.courses.lab4.db.Lab4Database;
 import ru.tpu.courses.lab4.db.Student;
-import ru.tpu.courses.lab4.db.StudentDao;
 import ru.tpu.courses.lab4.db.StudentManager;
 
 /**
@@ -39,9 +37,7 @@ public class Lab4Activity extends AppCompatActivity implements SearchView.OnQuer
     //*******************************************************
     //private StudentDao studentDao;
     private RecyclerView list;
-    private FloatingActionButton fab;
     private StudentsAdapter studentsAdapter;
-    private SearchView filter;
     private StudentManager studentManager;
     //*******************************************************
     @Override
@@ -54,7 +50,7 @@ public class Lab4Activity extends AppCompatActivity implements SearchView.OnQuer
 
         setContentView(R.layout.lab4_activity);
         list = findViewById(android.R.id.list);
-        fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         studentManager = new StudentManager(this);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -71,7 +67,7 @@ public class Lab4Activity extends AppCompatActivity implements SearchView.OnQuer
         );
 
         // Установка "слушателя" SearchView
-        filter = findViewById(R.id.filterView);
+        SearchView filter = findViewById(R.id.filterView);
         filter.setOnQueryTextListener(this);
     }
 

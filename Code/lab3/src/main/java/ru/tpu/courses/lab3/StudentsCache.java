@@ -22,7 +22,7 @@ public class StudentsCache {
         return instance;
     }
 
-    private Set<Student> students = new LinkedHashSet<>();
+    private final Set<Student> students = new LinkedHashSet<>();
 
     private StudentsCache() {
     }

@@ -23,12 +23,12 @@ import ru.tpu.courses.lab4.db.Student;
 //*******************************************************
 public class StudentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final int TYPE_NUMBER = 0;
-    public static final int TYPE_STUDENT = 1;
+    private static final int TYPE_NUMBER = 0;
+    private static final int TYPE_STUDENT = 1;
 
     private List<Student> students = new ArrayList<>();
     // строка для подсветки
-    public String highlight = new String();
+    private String highlight = "";
 
     //*******************************************************
     @Override

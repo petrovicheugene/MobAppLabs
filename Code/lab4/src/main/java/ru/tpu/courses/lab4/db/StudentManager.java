@@ -1,6 +1,5 @@
 package ru.tpu.courses.lab4.db;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
@@ -8,7 +7,7 @@ import java.util.List;
 //*******************************************************
 public class StudentManager {
     private final StudentDao studentDao;
-    private String filter = new String();
+    private String filter = "";
 
     public StudentManager(AppCompatActivity activity) {
         studentDao = Lab4Database.getInstance(activity).studentDao();

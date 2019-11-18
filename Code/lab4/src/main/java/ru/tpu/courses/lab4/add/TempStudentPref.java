@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class TempStudentPref {
+class TempStudentPref {
 
     private static final String PREF_FIRST_NAME = "first_name";
     private static final String PREF_SECOND_NAME = "second_name";

@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
 /**
  * Activity с полями для заполнения ФИО студента.
  */
@@ -45,7 +47,7 @@ public class AddStudentActivity extends AppCompatActivity {
         вообще реализовать View самому. Классы ActionBar и Toolbar позволяют реализовать большинство
         стандартных поведений соответственно design guidelines от Google.
          */
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         firstName = findViewById(R.id.first_name);
         secondName = findViewById(R.id.second_name);

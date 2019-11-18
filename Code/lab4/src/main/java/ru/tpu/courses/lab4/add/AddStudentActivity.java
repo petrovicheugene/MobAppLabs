@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -216,14 +215,8 @@ public class AddStudentActivity extends AppCompatActivity {
 
     private void saveBitmapToFile(Bitmap bitmap, String filePath) throws IOException {
         File file = new File(filePath);
-        OutputStream fOut = null;
-        try {
-            fOut = new FileOutputStream(file);
+        try (OutputStream fOut = new FileOutputStream(file)) {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
-        } finally {
-            if (fOut != null) {
-                fOut.close();
-            }
         }
     }
 

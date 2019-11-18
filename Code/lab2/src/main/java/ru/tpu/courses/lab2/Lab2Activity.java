@@ -1,7 +1,6 @@
 package ru.tpu.courses.lab2;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -81,13 +80,12 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
     }
 
     //****************************************************
-    protected Lab2ViewsContainer getViewContainer() {
-        Lab2ViewsContainer viewContainer = findViewById(R.id.container);
-        return viewContainer;
+    private Lab2ViewsContainer getViewContainer() {
+        return findViewById(R.id.container);
     }
 
     //****************************************************
-    protected void getUserStringAndWriteToView(int strId) {
+    private void getUserStringAndWriteToView(int strId) {
         // Создание и настройка диалога ввода текста
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getResources().getString(strId));
@@ -101,34 +99,25 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         builder.setView(input);
 
         // Установка кнопки ОК и обработчик ее нажатия
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Получаем введенную строку и записываем в контейнер
-                // strId - для определения куда записывать строку - в заголовок или подзаголовок
-                Lab2ViewsContainer lab2ViewsContainer = getViewContainer();
-                if (strId == R.string.lab2_title) {
-                    lab2ViewsContainer.setTitle(input.getText().toString());
-                } else if (strId == R.string.lab2_subtitle) {
-                    lab2ViewsContainer.setSubtitle(input.getText().toString());
-                }
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            // Получаем введенную строку и записываем в контейнер
+            // strId - для определения куда записывать строку - в заголовок или подзаголовок
+            Lab2ViewsContainer lab2ViewsContainer = getViewContainer();
+            if (strId == R.string.lab2_title) {
+                lab2ViewsContainer.setTitle(input.getText().toString());
+            } else if (strId == R.string.lab2_subtitle) {
+                lab2ViewsContainer.setSubtitle(input.getText().toString());
             }
         });
         // Установка кнопки Cancel и обработчик ее нажатия
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
         // старт диалога
         builder.show();
     }
 
     //****************************************************
-    protected void getPictureAndSetToView() {
+    private void getPictureAndSetToView() {
         // R.drawable.class.getField("name_of_the_resource").getInt(getResources())
 
         // Создание и настройка диалога ввода текста
@@ -139,40 +128,31 @@ public class Lab2Activity extends AppCompatActivity implements OnClickListener {
         final String[] pictureName = {"None", "Andriod", "GPS", "Teacher"};
 
         // Установка списка картинок и обработчик нажатия
-        builder.setItems(pictureName, new DialogInterface.OnClickListener() {
+        builder.setItems(pictureName, (dialog, item) -> {
+            // Получаем введенную строку и загружаем картинку в контейнер
+            Bitmap bitmap;
+            bitmap = null;
+            switch (item) {
+                case 0:
+                    // пустой битмап
+                    break;
+                case 1: // Andriod
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.android_games);
+                    break;
+                case 2: // GPS
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gps);
+                    break;
+                case 3: // Teacher
+                    bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.teacher);
+                    break;
 
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                // Получаем введенную строку и загружаем картинку в контейнер
-                Bitmap bitmap;
-                bitmap = null;
-                switch (item) {
-                    case 0:
-                        // пустой битмап
-                        break;
-                    case 1: // Andriod
-                        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.android_games);
-                        break;
-                    case 2: // GPS
-                        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gps);
-                        break;
-                    case 3: // Teacher
-                        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.teacher);
-                        break;
-
-                }
-                Lab2ViewsContainer lab2ViewsContainer = getViewContainer();
-                lab2ViewsContainer.setImage(bitmap);
             }
+            Lab2ViewsContainer lab2ViewsContainer = getViewContainer();
+            lab2ViewsContainer.setImage(bitmap);
         });
 
         // Установка кнопки Cancel и обработчик ее нажатия
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
         // старт диалога
         builder.show();

@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
     <application>
-        <activity android:name=".Lab4Activity"></activity>
+        <activity android:name=".Lab4Activity" />
         <activity android:name=".add.AddStudentActivity" />
 
         <provider

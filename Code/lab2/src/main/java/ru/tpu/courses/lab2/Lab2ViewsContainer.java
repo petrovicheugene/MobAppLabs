@@ -23,10 +23,10 @@ import androidx.constraintlayout.widget.ConstraintSet;
 //****************************************************
 public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListener {
 
-    ImageView imageView;
-    TextView titleView;
-    TextView subtitleView;
-    CheckBox checkBox;
+    private final ImageView imageView;
+    private final TextView titleView;
+    private final TextView subtitleView;
+    private final CheckBox checkBox;
 
     //****************************************************
     // Этот конструктор используется при создании View в коде.
@@ -60,8 +60,7 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
         // генерируем и присваиваем id
         imageView.setId(View.generateViewId());
         // установка пустого bitmap
-        Bitmap bitmap = null;
-        imageView.setImageBitmap(bitmap);
+        imageView.setImageBitmap(null);
         imageView.setVisibility(View.GONE);
         addView(imageView);
 
@@ -127,7 +126,7 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
     }
 
     //****************************************************
-    public void adjustViews() {
+    private void adjustViews() {
         // горизонтальное расстояние между view
         int padding = getResources().getDimensionPixelOffset(R.dimen.lab2_view_padding);
         // набор настроек для макета СonstraintLayout
@@ -180,7 +179,7 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
     }
 
     //****************************************************
-    protected void adjustSubtitleView() {
+    private void adjustSubtitleView() {
         // набор настроек для макета СonstraintLayout
         ConstraintSet set = new ConstraintSet();
         set.clone(this);
@@ -220,7 +219,7 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
     //****************************************************
     // установка заголовка
     public void setTitle(String title) {
-        if (titleView.getText().toString() != title) {
+        if (!titleView.getText().toString().equals(title)) {
             titleView.setText(title);
             if (title.isEmpty()) {
                 // при пустой строке titleView удаляется с макета и не занимает места
@@ -235,7 +234,7 @@ public class Lab2ViewsContainer extends ConstraintLayout implements OnClickListe
     //****************************************************
     // установка подзаголовка
     public void setSubtitle(String subtitle) {
-        if (subtitleView.getText().toString() != subtitle) {
+        if (!subtitleView.getText().toString().equals(subtitle)) {
             subtitleView.setText(subtitle);
             if (subtitle.isEmpty()) {
                 // при пустой строке subtitleView удаляется с макета и не занимает места

@@ -1,12 +1,10 @@
 package ru.tpu.courses.lab3.adapter;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -59,12 +57,12 @@ import ru.tpu.courses.lab3.Student;
  */
 public class StudentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final int TYPE_NUMBER = 0;
-    public static final int TYPE_STUDENT = 1;
+    private static final int TYPE_NUMBER = 0;
+    private static final int TYPE_STUDENT = 1;
 
     private List<Student> students = new ArrayList<>();
     // строка для подсветки
-    public String highlight = new String();
+    private String highlight = "";
 
     //*******************************************************
     @Override

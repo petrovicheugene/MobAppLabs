@@ -11,25 +11,27 @@ import androidx.room.Fts4;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Fts4
 @Entity
 public class Student implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "rowid")
     @Ignore
-    public int id;
+    private int id;
     @NonNull
     @ColumnInfo(name = "first_name")
-    public String firstName;
+    public final String firstName;
     @NonNull
     @ColumnInfo(name = "second_name")
-    public String secondName;
+    public final String secondName;
     @NonNull
     @ColumnInfo(name = "last_name")
-    public String lastName;
+    public final String lastName;
     @Nullable
     @ColumnInfo(name = "photo_path")
-    public String photoPath;
+    public final String photoPath;
 
     public Student(
             @NonNull String firstName,
@@ -43,11 +45,11 @@ public class Student implements Parcelable {
         this.photoPath = photoPath;
     }
 
-    protected Student(Parcel in) {
+    Student(Parcel in) {
         id = in.readInt();
-        firstName = in.readString();
-        secondName = in.readString();
-        lastName = in.readString();
+        firstName = Objects.requireNonNull(in.readString());
+        secondName = Objects.requireNonNull(in.readString());
+        lastName = Objects.requireNonNull(in.readString());
         photoPath = in.readString();
     }
 

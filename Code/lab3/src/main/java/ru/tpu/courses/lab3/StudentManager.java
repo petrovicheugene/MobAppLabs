@@ -8,7 +8,7 @@ import java.util.List;
 class StudentManager {
 
     private final StudentsCache studentsCache = StudentsCache.getInstance();
-    private String filter = new String();
+    private String filter = "";
 
     //*******************************************************
     public void setFilter(final String filter) {

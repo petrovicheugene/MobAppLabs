@@ -52,6 +52,6 @@
             android:layout_height="160dp"
             android:layout_margin="12dp"
             android:scaleType="centerCrop"
-            />
+            android:contentDescription="TODO" />
     </LinearLayout>
 </ScrollView>
